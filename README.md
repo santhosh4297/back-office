@@ -1,6 +1,6 @@
 
 
-# BackOffice
+# BackOffice Hackathon
 
 This project was generated using [Nx](https://nx.dev).
 
