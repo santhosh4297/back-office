@@ -1,0 +1,104 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/staff-platform/src",
+  "prefix": "back-office",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/staff-platform",
+        "index": "apps/staff-platform/src/index.html",
+        "main": "apps/staff-platform/src/main.ts",
+        "polyfills": "apps/staff-platform/src/polyfills.ts",
+        "tsConfig": "apps/staff-platform/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/staff-platform/src/favicon.ico",
+          "apps/staff-platform/src/assets"
+        ],
+        "styles": ["apps/staff-platform/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/staff-platform/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/staff-platform/src/environments/environment.ts",
+              "with": "apps/staff-platform/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/staff-platform/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:module-federation-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "staff-platform:build:production"
+        },
+        "development": {
+          "browserTarget": "staff-platform:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "staff-platform:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/staff-platform/**/*.ts",
+          "apps/staff-platform/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/staff-platform"],
+      "options": {
+        "jestConfig": "apps/staff-platform/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["manual-kyc"]
+}
