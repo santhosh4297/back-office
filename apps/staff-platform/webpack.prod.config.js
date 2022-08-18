@@ -12,4 +12,7 @@ module.exports = withModuleFederation({
    *   ['app2', 'https://app2.example.com'],
    * ]
    */
+  remotes: [
+    ['manual-kyc', 'https://okta-mfe-manual-kyc.vercel.app/']
+  ]
 });
