@@ -3,4 +3,16 @@
 
   <li><a routerLink="manual-kyc">ManualKyc</a></li>
 </ul>
+
+<button *ngIf="(isAuthenticated$ | async) === false; else logout" (click)="signIn()">
+  Sign In
+</button>
+
+<ng-template #logout>
+  <h2 *ngIf="(name$ | async) as name"> Hi {{name}} </h2>
+  <button (click)="signOut()">
+    Sign Out
+  </button>
+</ng-template>
+
 <router-outlet></router-outlet>
